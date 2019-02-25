@@ -1,0 +1,11 @@
+
+
+
+
+export default {
+  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VyXCI6e1wiY2FyZG51bVwiOlwiMDAxXCIsXCJjbGFzc2lmeVwiOjAsXCJjcmVhdGlvbl90aW1lXCI6MTU1MDQ1ODY4MjAwMCxcImRlcHRcIjpcIuacuuaehDFcIixcImlkXCI6OTEsXCJuYW1lXCI6XCIxXCIsXCJvcGVuaWRcIjpcIjFcIixcInBob25lXCI6XCIxNTI2MzIxNTAyXCIsXCJwaWRcIjowLFwic3RhdHVzXCI6MSxcInR5cGVcIjoxfX0iLCJpc3MiOiJ5aXhpbmciLCJleHAiOjE1NTA4MzA5MDB9.nw1XiL9Q9WmjfM3hHqJycej1jMz7WEigrUc54hVSJjE",
+  settoken(token) {
+    this.token=token;
+  },
+
+}
