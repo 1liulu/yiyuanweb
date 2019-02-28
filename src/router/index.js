@@ -38,5 +38,10 @@ export default new Router({
       name: 'message',
       component: message
     },
+    {
+      path: '/consultationReport',
+      name: 'consultationReport',
+      component: consultationReport
+    },
   ]
 })
