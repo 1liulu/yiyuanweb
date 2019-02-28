@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import index from '../pages/index.vue'
 import user from '../pages/user.vue'
 import use from '../pages/use.vue'
+import message from '../pages/message.vue'
 import token from './defined.js'
 import api from './api.js'
 import particulars from '../pages/particulars.vue'
@@ -31,6 +32,11 @@ export default new Router({
       path: '/particulars',
       name: 'particulars',
       component: particulars
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: message
     },
   ]
 })

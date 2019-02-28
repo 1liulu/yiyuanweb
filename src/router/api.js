@@ -3,7 +3,7 @@
 import token from './defined.js'
 
 export default {
-  url:"http://192.168.6.106/",
+  url:"http://192.168.6.103/",
   //用户个人中心
   wxindex(){
    return this.url+"wxindex/user?token="+token.token;
@@ -23,5 +23,8 @@ export default {
   //过期授权列表
   particulars(){
     return this.url+"Patient/particulars?token="+token.token;
+  },
+  Consultation(){
+    return this.url+"Consultation/list?token="+token.token;
   }
 }

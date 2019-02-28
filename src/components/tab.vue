@@ -10,6 +10,9 @@
       <mt-tab-item id="user">
         <img :src="img5" slot="icon">我的
       </mt-tab-item>
+      <mt-tab-item id="message">
+        <img :src="img7" slot="icon">会诊管理
+      </mt-tab-item>
     </mt-tabbar>
   </div>
 </template>
@@ -22,7 +25,8 @@
         selected: 'index',
         img1: "../../static/s.png",
         img3: "../../static/s.png",
-        img5: "../../static/s.png"
+        img5: "../../static/s.png",
+        img7: "../../static/message.png"
       }
     },
     computed: {
@@ -50,6 +54,12 @@
             this.img5 = "../../static/s.png";
           } else {
             this.img5 = "../../static/s.png";
+          }
+          if (this.selected == "message") {
+            this.$router.push('/message')
+            this.img7 = "../../static/message.png";
+          } else {
+            this.img7 = "../../static/message.png";
           }
         }
       }
