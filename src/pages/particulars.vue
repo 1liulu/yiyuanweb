@@ -15,21 +15,21 @@
             <div style="height: 10%;"></div>
           </li>
           <li class="li2">
-            <span style="font-size: 18px">用户1</span>&nbsp;&nbsp;&nbsp;{{0==0?'男':'女'}}&nbsp;&nbsp;&nbsp;0岁<br>
+            <span style="font-size: 18px">{{user.name}}</span>&nbsp;&nbsp;&nbsp;{{user.sex==0?'男':'女'}}&nbsp;&nbsp;&nbsp;{{user.age}}岁<br>
           </li>
         </ul>
       </div>
       <div class="kong"></div>
-      <div>
+      <div v-for="item in reportList">
         <table class="table1" >
           <tr>
             <td class="td1" >
-              06-25<br>
-              <span style="font-size: 13px;color: #edebee">2018</span>
+              {{item.creation_time|formatDate2}}<br>
+              <span style="font-size: 13px;color: #edebee">{{item.creation_time|formatDate1}}</span>
             </td>
             <td class="td2">
               枣庄市某医院&nbsp;&nbsp;<el-button type="primary" style="font-size: 8px" size="mini" round>远程专家诊断</el-button><br>
-              检查项目：胸部正位
+              检查项目：{{item.items}}
             </td>
             <td class="td3">
               <img src="../../static/right.png" style="width: 50%">
@@ -105,27 +105,43 @@
 </style>
 
 <script>
+  import {formatDate} from '../router/date.js';
   export default{
     data(){
       return {
-        uid:{"uid":91}
+        uid:'',
+        user:[],
+        reportList:[]
       }
     },
     mounted(){
-      this.load
+      this.uid=this.$route.params.uid
+      this.load()
     },
-    computed: {
+    filters: {
+      formatDate1(time) {
+        var date = new Date(time);
+        return formatDate(date, 'yyyy');
+      },
+      formatDate2(time) {
+        var date = new Date(time);
+        return formatDate(date, 'MM-dd');
+      }
+    },
+    methods: {
 
       load(){
         let that = this;
         that.$http({
           method: 'post',
           url: this.api.particulars(),
-          data:{'uid':91},
+          params:{uid:this.uid},
           crossDomain: true
         }).then(response=> {
           if(response.data.retCode==0){
             console.log(response.data.message)
+            this.user=response.data.message
+            this.reportList=response.data.message.reportList
           }
 
         })

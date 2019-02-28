@@ -15,8 +15,8 @@
             <div style="height: 10%;"></div>
           </li>
           <li class="li2">
-            {{user.patient.name}}&nbsp;&nbsp;&nbsp;{{user.patient.sex==0?'男':'女'}}&nbsp;&nbsp;&nbsp;{{user.patient.age}}岁<br>
-            {{user.patient.phone}}
+            {{user.patient==null?'':user.patient.name}}&nbsp;&nbsp;&nbsp;{{user.patient==null?'男':user.patient.sex==0?'男':'女'}}&nbsp;&nbsp;&nbsp;{{user.patient==null?'':user.patient.age}}岁<br>
+            {{user.patient==null?'':user.patient.phone}}
           </li>
 
         </ul>
@@ -150,9 +150,9 @@
       }
     },
     mounted() {
-      this.load
+      this.load()
     },
-    computed: {
+    methods: {
       load() {
         let that = this;
         that.$http({
@@ -162,7 +162,6 @@
           crossDomain: true
         }).then(response => {
           //var jsonData = JSON.stringify(response.data, null, 4);
-          console.log(response.data)
           if (response.data.retCode == 0) {
             that.user = response.data.message
           }

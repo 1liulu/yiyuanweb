@@ -40,7 +40,7 @@
             this.img1 = "../../static/s.png"
           }
           if (this.selected == "use") {
-            this.$router.push('/particulars');
+            this.$router.push('/use');
             this.img3 = '../../static/s.png'
           } else {
             this.img3 = '../../static/s.png'

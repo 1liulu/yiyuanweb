@@ -6,7 +6,7 @@
     </mt-header>
     <div style="width: 100% ;position:absolute">
       <div class="top">
-        <table class="t1">
+        <table class="t1" @click="onclicks(user.uid)">
           <tr>
             <td class="d1" align="center" valign="middle">
               <img src="../../static/user.png">
@@ -28,7 +28,7 @@
         <div class="kong" ></div>
         <el-card shadow="always" body-style="padding: 0px;">
         <div class="top1">
-          <table class="t1">
+          <table class="t1"  @click="onclicks(item.uid)">
               <tr>
                 <td class="d1" align="center" valign="middle">
                   <img src="../../static/user.png">
@@ -185,16 +185,17 @@
 
 <script>
   export default {
-    data() {
+
+      data() {
       return {
         userlist: [],
         user: [],
       }
     },
     mounted() {
-      this.load
+      this.load()
     },
-    computed: {
+    methods: {
       load() {
         let that = this;
         that.$http({
@@ -207,12 +208,15 @@
           if (response.data.retCode == 0) {
             that.userlist = response.data.message.list
             that.user = response.data.message.patient
-            console.log(that.userlist)
-            console.log(that.user)
+
           }
 
         })
 
+      },
+      onclicks(id){
+        console.log(id)
+        this.$router.push({name:'particulars',params:{uid:id}})
       }
     }
 

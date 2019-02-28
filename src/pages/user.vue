@@ -189,8 +189,8 @@
       }
     },
     mounted() {
-      this.load1
-      this.load
+      this.load1()
+      this.load()
 
     },
     filters: {
@@ -199,7 +199,7 @@
         return formatDate(date, 'yyyy年MM月dd日');
       }
     },
-    computed: {
+    methods: {
 
       load(){
         let that = this;
