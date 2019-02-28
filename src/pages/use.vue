@@ -26,6 +26,7 @@
       </div>
       <div v-for="item in userlist">
         <div class="kong" ></div>
+        <el-card shadow="always" body-style="padding: 0px;">
         <div class="top1">
           <table class="t1">
               <tr>
@@ -47,6 +48,7 @@
               </tr>
           </table>
         </div>
+        </el-card>
       </div>
     </div>
   </div>
@@ -60,7 +62,7 @@
     color: #100e0e;
   }
   .kong{
-    height: 7px
+    height: 10px
   }
   .header {
     background-color: #ffffff;
@@ -176,7 +178,7 @@
 
   .top1 .text2 .p4 {
     font-size: 12px;
-    color: #828282;
+    color: #cccccc;
   }
 
 </style>
@@ -190,7 +192,7 @@
       }
     },
     mounted() {
-      this.load();
+      this.load
     },
     computed: {
       load() {
