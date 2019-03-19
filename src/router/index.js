@@ -7,11 +7,18 @@ import message from '../pages/message.vue'
 import token from './defined.js'
 import api from './api.js'
 import particulars from '../pages/particulars.vue'
+
+import binding from '../pages/binding.vue'
 Vue.use(Router);
 Vue.prototype.token=token;
 Vue.prototype.api=api;
 export default new Router({
   routes: [
+    {
+      path:"/binding",
+      name: 'binding',
+      component: binding
+    },
 
     {
       path: '/index',
@@ -38,10 +45,10 @@ export default new Router({
       name: 'message',
       component: message
     },
-    {
-      path: '/consultationReport',
-      name: 'consultationReport',
-      component: consultationReport
-    },
+    // {
+    //   path: '/consultationReport',
+    //   name: 'consultationReport',
+    //   component: consultationReport
+    // },
   ]
 })

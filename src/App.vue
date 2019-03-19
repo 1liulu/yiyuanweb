@@ -4,18 +4,58 @@
 
       <router-view/>
     </div>
-    <footer-bar class="footer"></footer-bar>
+    <footer-bar v-if="$route.path != '/binding' && $route.path != '/particulars' " class="footer"></footer-bar>
   </div>
 </template>
 
 <script>
   import Footer from './components/tab.vue'
+
   export default {
     name: 'app',
     components: {
       'footer-bar': Footer
     },
+    created() {
+     /* var token = this.$route.query.token;
+      if (typeof token !== 'undefined') {
+        var exp = new Date();
+        exp.setTime(exp.getTime() + 3600 * 1000);//过期时间60分钟
+        document.cookie = 'token=' + token + ";expires=" + exp.toGMTString();
+      }
+      if (getCookie('token') == null) {
+        location.href = config.projectUrl + '/auth?returnUrl=' + encodeURIComponent(config.projectUrl + '/#/');
+      }*/
+    }
+    ,
     computed: {}
+    ,
+    mounted() {
+      this.load()
+    }
+    ,
+    methods: {
+      load() {
+        this.$http({
+          method: "post",
+            url: "http://jp.starint.cn/hospital/wx/wechatlogin",
+          data: null,
+          crossDomain: true,
+        }).then(response => {
+          this.token.settoken(response.data.message.token)
+          if (response.data.retCode == 1) {
+            this.$router.push({
+              path: "/binding"
+            })
+          }else{
+            this.$router.push({
+              path: "/index"
+            })
+          }
+        })
+      }
+
+    }
   }
 
   document.querySelector('body').setAttribute('style', 'background-color:#f8f8f8;margin: 0;')

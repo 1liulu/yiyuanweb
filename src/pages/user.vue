@@ -94,6 +94,7 @@
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
+    <footer-bar class="footer"></footer-bar>
   </div>
 
 </template>
@@ -179,8 +180,14 @@
 </style>
 
 <script>
+  import Footer from "../components/tab.vue"
   import {formatDate} from '../router/date.js';
   export default {
+    name: 'app',
+    components: {
+      'footer-bar': Footer
+    },
+    computed: {},
     data() {
       return {
         selected:'1',

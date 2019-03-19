@@ -3,7 +3,8 @@
 
 
 export default {
-  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VyXCI6e1wiY2FyZG51bVwiOlwiMTIzXCIsXCJjbGFzc2lmeVwiOjMsXCJjcmVhdGlvbl90aW1lXCI6MTU0Njc0MjI3NDAwMCxcImRlcHRcIjpcIuacuuaehDFcIixcImlkXCI6MjYsXCJuYW1lXCI6XCIxMVwiLFwib3BlbmlkXCI6XCIyNlwiLFwicGhvbmVcIjpcIjEzMTMxMTExNDQ0XCIsXCJwaWRcIjowLFwic3RhdHVzXCI6MSxcInR5cGVcIjoxfX0iLCJpc3MiOiJ5aXhpbmciLCJleHAiOjE1NTEzNjEzMjJ9.rQUGFCSAByi5l-fjXsRphpasMPKwPZKlgxwmeexK_HU",
+
+  token:" ",
   settoken(token) {
     this.token=token;
   },

@@ -25,10 +25,10 @@
         </table>
       </div>
       <div v-for="item in userlist">
-        <div class="kong" ></div>
+        <div class="kong"></div>
         <el-card shadow="always" body-style="padding: 0px;">
-        <div class="top1">
-          <table class="t1"  @click="onclicks(item.uid)">
+          <div class="top1">
+            <table class="t1" @click="onclicks(item.uid)">
               <tr>
                 <td class="d1" align="center" valign="middle">
                   <img src="../../static/user.png">
@@ -46,11 +46,12 @@
                 <td class="d3"></td>
                 <td class="d4">删除</td>
               </tr>
-          </table>
-        </div>
+            </table>
+          </div>
         </el-card>
       </div>
     </div>
+    <footer-bar class="footer"></footer-bar>
   </div>
 
 </template>
@@ -61,9 +62,11 @@
     padding: 0;
     color: #100e0e;
   }
-  .kong{
+
+  .kong {
     height: 10px
   }
+
   .header {
     background-color: #ffffff;
     color: dimgrey;
@@ -148,11 +151,13 @@
     width: 46%;
     height: 100%;
   }
+
   .top1 .d3 {
     width: 1%;
     height: 100%;
     background-color: #f8f8f8;
   }
+
   .top1 .d4 {
     width: 23%;
     height: 100%;
@@ -160,6 +165,7 @@
     vertical-align: middle;
     text-align: center;
   }
+
   .top1 .text2 p {
     line-height: 1.2rem;
   }
@@ -184,9 +190,11 @@
 </style>
 
 <script>
-  export default {
 
-      data() {
+
+  export default {
+    computed: {},
+    data() {
       return {
         userlist: [],
         user: [],
@@ -214,9 +222,9 @@
         })
 
       },
-      onclicks(id){
+      onclicks(id) {
         console.log(id)
-        this.$router.push({name:'particulars',params:{uid:id}})
+        this.$router.push({name: 'particulars', params: {uid: id}})
       }
     }
 

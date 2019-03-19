@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'mint-ui/lib/style.css'
 
 import axios from 'axios';
-
+import '../static/font/iconfont.css'
 Vue.use(MintUI)
 Vue.use(ElementUI)
 Vue.config.productionTip = false

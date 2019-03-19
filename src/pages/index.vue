@@ -60,6 +60,7 @@
         </table>
       </el-card>
     </div>
+    <footer-bar class="footer"></footer-bar>
   </div>
 
 </template>
@@ -142,7 +143,14 @@
 </style>
 
 <script>
+  import Footer from "../components/tab.vue"
+
   export default {
+    name: 'app',
+    components: {
+      'footer-bar': Footer
+    },
+    computed: {},
     data() {
       return {
         data: {"code": 1},
@@ -156,7 +164,7 @@
       load() {
         let that = this;
         that.$http({
-          method: 'post',
+          method: '  ',
           url: this.api.wxindex(),
           data: null,
           crossDomain: true
