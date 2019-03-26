@@ -26,8 +26,7 @@
       if (getCookie('token') == null) {
         location.href = config.projectUrl + '/auth?returnUrl=' + encodeURIComponent(config.projectUrl + '/#/');
       }*/
-    }
-    ,
+    },
     computed: {}
     ,
     mounted() {
@@ -38,18 +37,19 @@
       load() {
         this.$http({
           method: "post",
-            url: "http://jp.starint.cn/hospital/wx/wechatlogin",
+          url:"http://localhost/wx/code?code=1",
           data: null,
           crossDomain: true,
         }).then(response => {
           this.token.settoken(response.data.message.token)
-          if (response.data.retCode == 1) {
+          console.log(response.data)
+          if (response.data.message.type == 1) {
             this.$router.push({
               path: "/binding"
             })
           }else{
             this.$router.push({
-              path: "/index"
+              path: "/indextab"
             })
           }
         })

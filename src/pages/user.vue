@@ -8,45 +8,45 @@
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
           <div v-for="item in list">
-          <div class="kong" ></div>
-          <el-card shadow="always" body-style="padding: 0px;">
-          <div class="s1">
-            <div class="t1">
-              <table valign="middle">
-                <tr>
-                  <td>授权给了：{{item.doctorname}}</td>
-                </tr>
-              </table>
-            </div>
-            <div class="t2">
-              <table valign="middle">
-                <tr>
-                  <td  class="d1" style="">
-                    <img src="../../static/user.png" style="width:90%"  ><br>
+            <div class="kong" ></div>
+            <el-card shadow="always" body-style="padding: 0px;">
+              <div class="s1">
+                <div class="t1">
+                  <table valign="middle">
+                    <tr>
+                      <td>授权给了：{{item.doctorname}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="t2">
+                  <table valign="middle">
+                    <tr>
+                      <td  class="d1" style="">
+                        <img src="../../static/user.png" style="width:90%"  ><br>
 
-                  </td>
-                  <td class="d2" style="">
-                    <p>
-                      <span style="color:#1e90ff;font-size: 17px">{{item.username}}</span><br>
-                      <span style="color:#cccccc;font-size: 12px">共0份影像</span>
-                    </p>
-                  </td>
-                  <td  class="d3" >
-                    <img src="../../static/right.png" style="width: 50%">
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="t3">
-              <table  valign="middle">
-                <tr>
-                  <td class="d1">发起时间：{{item.starttime|formatDate}}</td>
-                  <td class="d2" style="text-align:right" >有效时间：{{item.endtime|formatDate}}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          </el-card>
+                      </td>
+                      <td class="d2" style="">
+                        <p>
+                          <span style="color:#1e90ff;font-size: 17px">{{item.username}}</span><br>
+                          <span style="color:#cccccc;font-size: 12px">共0份影像</span>
+                        </p>
+                      </td>
+                      <td  class="d3" >
+                        <img src="../../static/right.png" style="width: 50%">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="t3">
+                  <table  valign="middle">
+                    <tr>
+                      <td class="d1">发起时间：{{item.starttime|formatDate}}</td>
+                      <td class="d2" style="text-align:right" >有效时间：{{item.endtime|formatDate}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </el-card>
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
@@ -94,7 +94,6 @@
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
-    <footer-bar class="footer"></footer-bar>
   </div>
 
 </template>
@@ -180,14 +179,8 @@
 </style>
 
 <script>
-  import Footer from "../components/tab.vue"
   import {formatDate} from '../router/date.js';
   export default {
-    name: 'app',
-    components: {
-      'footer-bar': Footer
-    },
-    computed: {},
     data() {
       return {
         selected:'1',

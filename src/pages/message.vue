@@ -4,7 +4,7 @@
       <mt-button v-link="'/'" icon="back" slot="left"></mt-button>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
-    <div v-for="(item,index) in orderDetailsList" :key="index">
+    <div @click="onclicks(item)" v-for="(item,index) in orderDetailsList" :key="index">
       <mt-cell>
         <span>用户名称：{{item.order.name}}</span>
         <span>创建时间：{{item.order.createtime|formatDate}}</span>
@@ -53,6 +53,10 @@
 
       }
     },
+    onclicks(item) {
+      console.log(item)
+      this.$router.push({name: 'consultation', params: {item: item}})
+    }
     // computed: {
     //   load() {
     //     let that = this;

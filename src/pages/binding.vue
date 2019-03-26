@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div class="login">
     <div class="title">
       亿新医疗云胶片
@@ -8,7 +8,6 @@
       <div class="item">
         <i class="iconfont icon-institute"></i>
         <div class="item_left">
-          <!-- <input type="text" v-model="loginData.mechanism" /> -->
           <div @click="isPick=!isPick"> {{loginData.mechanism}}</div>
         </div>
       </div>
@@ -17,7 +16,7 @@
         <div class="item other">
           <i class="iconfont icon-wendang"></i>
           <div class="item_left">
-            <input type="text" v-model="loginData.ID" placeholder="就诊ID"/>
+            <input type="text" v-model="loginData.cardnum" placeholder="就诊ID"/>
           </div>
         </div>
 
@@ -39,15 +38,16 @@
         <div class="item other">
           <i class="iconfont icon-buoumaotubiao32"></i>
           <div class="item_left">
-            <input
+            <input id="CODE"
               type="text"
               v-model="loginData.code"
               placeholder="输入验证码"
+              v-on:input="inputFuc"
             />
           </div>
         </div>
 
-        <div class="ID" :class="{'time':getCodeTime>0}" @click="getCode">
+        <div  class="ID" :class="{'time':getCodeTime>0}" @click="onclicks">
           {{getCodeTime==0?"获取验证码":getCodeTime+"s后重新获取"}}
         </div>
       </div>
@@ -74,8 +74,7 @@
 </template>
 
 <script>
-  import token from '../router/defined.js'
-
+import {defined} from "../router/defined.js"
   export default {
     data() {
       return {
@@ -92,7 +91,7 @@
         getCodeTime: 0,
         loginData: {
           mechanism: "机构1",
-          ID: "",
+          cardnum: "",
           phone: "",
           code: ""
         },
@@ -100,22 +99,23 @@
       };
     },
     created() {
-     /* this.setToken()*/
     },
     methods: {
-      //设置token
-      /*setToken() {
-        this.$http.get("http://jp.starint.cn/wx/wechatlogin").then(res => {
+      inputFuc(){
 
-          token.settoken(res.data.message.token)
-          /!*if(res.data.message.type == 0){
-            this.$router.push({
-              path: "/index"
-            });
-          }*!/
-          console.log(token.token)
-        })
-      },*/
+        console.log(this.code.code);
+        console.log(this.loginData.code)
+
+        if(this.code.code == this.loginData.code){
+          //alert("ssss")
+        }else{
+          if(this.loginData.code.length==4){
+            this.loginData.code=""
+            alert("验证码错误")
+          }
+
+        }
+      },
       picker() {
         this.loginData.mechanism = this.pickerValue;
         this.isPick = false;
@@ -152,7 +152,7 @@
           return;
         }
 
-        if (!this.loginData.ID) {
+        if (!this.loginData.cardnum) {
           alert("请输入就诊ID");
           return;
         }
@@ -162,32 +162,74 @@
           return;
         }
 
-        if (!this.loginData.code) {
-          alert("请输入验证码");
-          return;
-        }
+
 
         if (!this.isPoneAvailable(this.loginData.phone)) {
           alert("手机号码格式不正确")
           return
         }
 
-        this.$router.push({
-          path: "/index"
-        });
+        this.bingding(this.loginData.phone,this.loginData.cardnum)
 
-        //登录
-        //   this.$http.post("xxx/xxx/login",this.loginData).then(res=>{
-        //       if(res.data.success){
-        //           alert("登录成功！")
-        //           this.$router.push({
-        //               path:"/index"
-        //           })
-        //       }else{
-        //           alert("未能成功登录！")
-        //      }
-        //   })
-      }
+
+
+        // //登录
+        // this.$http.get(this.api.userbind(), {params:{cardnum:this.loginData.cardnum, phone:this.loginData.phone,code:this.loginData.phone}}).then(res => {
+        //   console.log(res)
+        //   if (res.data.retcode == 1) {
+        //     alert("登录成功！")
+        //     this.$router.push({
+        //       path: "/index"
+        //     })
+        //   } else {
+        //     alert("未能成功登录！")
+        //   }
+        // })
+      },
+      bingding(phone,num){
+        let that = this;
+        that.$http({
+          method: 'post',
+          url: this.api.userbind(),
+          params:{phone:phone,cardnum:num},
+          crossDomain: true
+        }).then(response=> {
+          console.log(response.data)
+          if(response.data.retCode==0){
+            this.token.settoken(response.data.message)
+            this.$router.push({
+                path: "/index"
+            })
+          }
+        })
+
+      },
+      onclicks() {
+        if (this.getCodeTime == 0) {
+          this.getCodeTime = 60;
+          let me = this;
+          let time = setInterval(() => {
+            if (me.getCodeTime > 0) {
+              me.getCodeTime--
+            } else {
+              clearInterval(time)
+            }
+          }, 1000);
+        } else {
+          return
+        }
+
+        this.$http.get(this.api.sendmsg(),
+          {params:{phone:this.loginData.phone}}
+        ).then(response => {
+          console.log(response.data.code)
+          this.code.setcode(response.data.code)
+          if (response.data.retCode == 0) {
+          }
+
+        })
+
+      },
     }
   };
 </script>

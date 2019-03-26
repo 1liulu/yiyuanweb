@@ -1,10 +1,9 @@
 
 
 import token from './defined.js'
-
 export default {
-  //url:"http://192.168.6.103/hospital-0.1/",
-  url:"http://192.168.6.103",
+  url:"http://127.0.0.1/",
+  //url:"http://jp.starint.cn/hospital/",
   //用户个人中心
   wxindex(){
     return this.url+"wxindex/user?token="+token.token;
@@ -25,7 +24,20 @@ export default {
   particulars(){
     return this.url+"Patient/particulars?token="+token.token;
   },
+  //会诊管理
   Consultation(){
     return this.url+"Consultation/list?token="+token.token;
-  }
+  },
+  //微信登陆
+  wechatlogin(){
+    return this.url +"wx/wechatlogin"
+  },
+  //用户绑定
+  userbind(){
+    return this.url +"wx/user?token="+token.token;
+  },
+  //发送验证码
+  sendmsg(){
+    return this.url +"wx/sms";
+  },
 }
