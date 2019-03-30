@@ -9,12 +9,15 @@ import token from './defined.js'
 import code from './defined.js'
 import api from './api.js'
 import particulars from '../pages/particulars.vue'
-
+import getinfo from '../pages/getinfo.vue'
 import binding from '../pages/binding.vue'
+import adduser from '../pages/adduser.vue'
+import { PaletteButton } from 'mint-ui';
 Vue.use(Router);
 Vue.prototype.token=token;
 Vue.prototype.code=code;
 Vue.prototype.api=api;
+Vue.component(PaletteButton.name, PaletteButton);
 export default new Router({
   routes: [
     {
@@ -51,6 +54,16 @@ export default new Router({
       path: '/message',
       name: 'message',
       component: message
+    },
+    {
+      path: '/getinfo',
+      name: 'getinfo',
+      component: getinfo
+    },
+    {
+      path: '/adduser',
+      name: 'adduser',
+      component: adduser
     },
     // {
     //   path: '/consultationReport',

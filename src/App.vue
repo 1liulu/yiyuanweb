@@ -37,12 +37,11 @@
       load() {
         this.$http({
           method: "post",
-          url:"http://localhost/wx/code?code=1",
+          url:"http://192.168.199.154/wx/code?code=1",
           data: null,
           crossDomain: true,
         }).then(response => {
           this.token.settoken(response.data.message.token)
-          console.log(response.data)
           if (response.data.message.type == 1) {
             this.$router.push({
               path: "/binding"

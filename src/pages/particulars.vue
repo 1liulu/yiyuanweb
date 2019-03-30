@@ -31,7 +31,7 @@
               枣庄市某医院&nbsp;&nbsp;<el-button type="primary" style="font-size: 8px" size="mini" round>远程专家诊断</el-button><br>
               检查项目：{{item.items}}
             </td>
-            <td class="td3">
+            <td class="td3" @click="onclicks(item.patient_id)">
               <img src="../../static/right.png" style="width: 50%">
             </td>
           </tr>
@@ -139,13 +139,15 @@
           crossDomain: true
         }).then(response=> {
           if(response.data.retCode==0){
-            console.log(response.data.message)
             this.user=response.data.message
             this.reportList=response.data.message.reportList
           }
 
         })
 
+      },
+      onclicks(id){
+        this.$router.push({name:'getinfo',params:{pid:id}})
       },
 
     }

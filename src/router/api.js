@@ -2,7 +2,7 @@
 
 import token from './defined.js'
 export default {
-  url:"http://127.0.0.1/",
+  url:"http://192.168.199.154/",
   //url:"http://jp.starint.cn/hospital/",
   //用户个人中心
   wxindex(){
@@ -40,4 +40,17 @@ export default {
   sendmsg(){
     return this.url +"wx/sms";
   },
+  //查看报告详情
+  reportDetails() {
+    return this.url + "Patient/reportDetails?token="+token.token;
+  },
+  //删除家庭组成员
+  deluser() {
+    return this.url + "Patient/deluser?token="+token.token;
+  },
+  //添加家庭组成员
+  addPatient() {
+    return this.url + "Patient/addPatient?token="+token.token;
+  },
+
 }

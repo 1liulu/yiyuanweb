@@ -21,7 +21,6 @@
     },
     mounted() {
       this.item = this.$route.params.item
-      console.log(this.$route.params.item)
     },
     filters: {
       formatDate(time) {

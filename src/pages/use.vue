@@ -1,6 +1,6 @@
 <template>
   <div id="use">
-    <mt-header class="header" fixed title="就诊人列表">
+    <mt-header class="header" fixed title="添加就诊人">
       <mt-button v-link="'/'" icon="back" slot="left"></mt-button>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
@@ -28,12 +28,12 @@
         <div class="kong" ></div>
         <el-card shadow="always" body-style="padding: 0px;">
           <div class="top1">
-            <table class="t1"  @click="onclicks(item.uid)">
+            <table class="t1"  >
               <tr>
-                <td class="d1" align="center" valign="middle">
+                <td class="d1" align="center" valign="middle" @click="onclicks(item.uid)">
                   <img src="../../static/user.png">
                 </td>
-                <td class="d2">
+                <td class="d2" @click="onclicks(item.uid)">
                   <div class="text1"></div>
                   <div class="text2">
                     <p class="p1">{{item.name}}</p>
@@ -44,13 +44,20 @@
                   <div class="text3"></div>
                 </td>
                 <td class="d3"></td>
-                <td class="d4">删除</td>
+                <td class="d4" @click="deluser(item.uid)">删除</td>
               </tr>
             </table>
           </div>
         </el-card>
       </div>
     </div>
+    <div style="bottom: 10%;right: 8%;position: fixed;">
+      <mt-palette-button content="+" mainButtonStyle="color:#fff;background-color:#1e90ff;"
+                         @collapse="adduser()">
+        <div class="my-icon-button" ></div>
+      </mt-palette-button>
+    </div>
+
   </div>
 
 </template>
@@ -184,6 +191,7 @@
 </style>
 
 <script>
+  import { MessageBox } from 'mint-ui';
   export default {
 
     data() {
@@ -215,10 +223,33 @@
 
       },
       onclicks(id){
-        console.log(id)
         this.$router.push({name:'particulars',params:{uid:id}})
+      },
+      deluser(id){
+        MessageBox.confirm('确定执行此操作?').then(action => {
+          let that = this;
+          that.$http({
+            method: 'post',
+            url: this.api.deluser(),
+            params:{uid:id},
+            crossDomain: true
+          }).then(response => {
+            if (response.data.retCode == 0) {
+              this.load()
+              MessageBox('提示', '删除成功');
+            }else{
+              MessageBox('提示', '删除失败');
+            }
+
+          })
+        });
+
+      },
+      adduser(){
+        this.$router.push({name:'adduser'})
       }
-    }
+    },
 
   }
+
 </script>

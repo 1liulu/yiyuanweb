@@ -103,8 +103,6 @@ import {defined} from "../router/defined.js"
     methods: {
       inputFuc(){
 
-        console.log(this.code.code);
-        console.log(this.loginData.code)
 
         if(this.code.code == this.loginData.code){
           //alert("ssss")
@@ -194,7 +192,6 @@ import {defined} from "../router/defined.js"
           params:{phone:phone,cardnum:num},
           crossDomain: true
         }).then(response=> {
-          console.log(response.data)
           if(response.data.retCode==0){
             this.token.settoken(response.data.message)
             this.$router.push({

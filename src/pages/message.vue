@@ -46,7 +46,6 @@
           //var jsonData = JSON.stringify(response.data, null, 4);
           if (response.data.retCode == 0) {
             this.orderDetailsList = response.data.message
-            console.log(this.orderDetailsList)
           }
 
         })
