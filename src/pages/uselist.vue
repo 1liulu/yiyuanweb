@@ -1,39 +1,42 @@
 <template>
   <div id="use">
-    <mt-header class="header" fixed title="就诊人列表">
+    <mt-header class="header" fixed title="选择联系人">
       <mt-button v-link="'/'" icon="back" slot="left"></mt-button>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <div style="width: 100% ;position:absolute">
-      <div class="top">
-        <table class="t1" @click="onclicks(user.uid)">
-          <tr>
-            <td class="d1" align="center" valign="middle">
-              <img src="../../static/user.png">
-            </td>
-            <td class="d2">
-              <div class="text1"></div>
-              <div class="text2">
-                <p class="p1">{{user.name}}</p>
-                <p class="p2">{{user.sex==0?'男':'女'}}</p>
-                <p class="p3">{{user.uid}}</p>
-                <p class="p4">{{user.number}}份影像</p>
-              </div>
-              <div class="text3"></div>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <div class="kong" ></div>
+      <el-card shadow="always" body-style="padding: 0px;">
+        <div class="top1">
+          <table class="t1"  >
+            <tr>
+              <td class="d1" align="center" valign="middle" @click="onclicks(user)">
+                <img src="../../static/user.png">
+              </td>
+              <td class="d2" @click="onclicks(user)">
+                <div class="text1"></div>
+                <div class="text2">
+                  <p class="p1">{{user.name}}</p>
+                  <p class="p2">{{user.sex==0?'男':'女'}}</p>
+                  <p class="p3">{{user.uid}}</p>
+                  <p class="p4">{{user.number}}份影像</p>
+                </div>
+                <div class="text3"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </el-card>
       <div v-for="item in userlist">
         <div class="kong" ></div>
         <el-card shadow="always" body-style="padding: 0px;">
           <div class="top1">
             <table class="t1"  >
               <tr>
-                <td class="d1" align="center" valign="middle" @click="onclicks(item.uid)">
+                <td class="d1" align="center" valign="middle" @click="onclicks(item)">
                   <img src="../../static/user.png">
                 </td>
-                <td class="d2" @click="onclicks(item.uid)">
+                <td class="d2" @click="onclicks(item)">
                   <div class="text1"></div>
                   <div class="text2">
                     <p class="p1">{{item.name}}</p>
@@ -43,20 +46,13 @@
                   </div>
                   <div class="text3"></div>
                 </td>
-                <td class="d3"></td>
-                <td class="d4" @click="deluser(item.uid)">删除</td>
               </tr>
             </table>
           </div>
         </el-card>
       </div>
     </div>
-    <div style="bottom: 10%;right: 8%;position: fixed;">
-      <mt-palette-button content="+" mainButtonStyle="color:#fff;background-color:#1e90ff;"
-                         @collapse="adduser()">
-        <div class="my-icon-button" ></div>
-      </mt-palette-button>
-    </div>
+
 
   </div>
 
@@ -152,20 +148,8 @@
   }
 
   .top1 .d2 {
-    width: 46%;
+    width: 70%;
     height: 100%;
-  }
-  .top1 .d3 {
-    width: 1%;
-    height: 100%;
-    background-color: #f8f8f8;
-  }
-  .top1 .d4 {
-    width: 23%;
-    height: 100%;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
   }
   .top1 .text2 p {
     line-height: 1.2rem;
@@ -222,33 +206,12 @@
         })
 
       },
-      onclicks(id){
-        this.$router.push({name:'particulars',params:{uid:id}})
-        this.token.setuserid(id)
+      onclicks(item){
+        this.$router.push({name:'getparticulars',params:{uid:item.uid}})
+        this.token.setuserid(item.uid)
+        this.token.setuser(item)
       },
-      deluser(id){
-        MessageBox.confirm('确定执行此操作?').then(action => {
-          let that = this;
-          that.$http({
-            method: 'post',
-            url: this.api.deluser(),
-            params:{uid:id},
-            crossDomain: true
-          }).then(response => {
-            if (response.data.retCode == 0) {
-              this.load()
-              MessageBox('提示', '删除成功');
-            }else{
-              MessageBox('提示', '删除失败');
-            }
 
-          })
-        });
-
-      },
-      adduser(){
-        this.$router.push({name:'adduser'})
-      }
     },
 
   }

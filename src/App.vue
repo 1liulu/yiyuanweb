@@ -35,14 +35,10 @@
     ,
     methods: {
       load() {
-        this.$http({
-          method: "post",
-          url:"http://192.168.199.154/wx/code?code=1",
-          data: null,
-          crossDomain: true,
-        }).then(response => {
-          this.token.settoken(response.data.message.token)
-          if (response.data.message.type == 1) {
+        this.token.settoken(this.$route.query.token)
+        console.log(this.token.token)
+        console.log(this.$route.query.type)
+          if (this.$route.query.type == 1) {
             this.$router.push({
               path: "/binding"
             })
@@ -51,7 +47,7 @@
               path: "/indextab"
             })
           }
-        })
+
       }
 
     }

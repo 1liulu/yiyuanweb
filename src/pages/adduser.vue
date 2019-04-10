@@ -84,7 +84,7 @@
   }
 
   .login .login_in > .item {
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 
   .login .login_in .item input {
@@ -93,6 +93,7 @@
     width: 100%;
     background: transparent;
     box-sizing: border-box;
+    font-size: 16px;
   }
 
   .login .login_in .item.other {

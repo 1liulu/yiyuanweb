@@ -1,6 +1,6 @@
 <template >
   <div id="particulars" >
-    <mt-header class="header"  fixed title="报告列表">
+    <mt-header class="header"  fixed title="选择报告">
       <mt-button v-link="'/'" icon="back" slot="left"></mt-button>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
@@ -21,17 +21,17 @@
       </div>
       <div class="kong"></div>
       <div v-for="item in reportList">
-        <table class="table1" >
+        <table class="table1" @click="onclicks(item)">
           <tr>
             <td class="td1" >
               {{item.creation_time|formatDate2}}<br>
               <span style="font-size: 13px;color: #edebee">{{item.creation_time|formatDate1}}</span>
             </td>
             <td class="td2">
-              枣庄市某医院&nbsp;&nbsp;<el-button type="primary" style="font-size: 8px" size="mini" round @click="specialist()">远程专家诊断</el-button><br>
+              枣庄市某医院&nbsp;&nbsp;<br>
               检查项目：{{item.items}}
             </td>
-            <td class="td3" @click="onclicks(item.patient_id)">
+            <td class="td3" >
               <img src="../../static/right.png" style="width: 50%">
             </td>
           </tr>
@@ -146,11 +146,10 @@
         })
 
       },
-      onclicks(id){
-        this.$router.push({name:'getinfo',params:{pid:id}})
-      },
-      specialist(){
-        this.$router.push({name:'specialist'})
+      onclicks(item){
+        this.token.setparticulars(item)
+        this.$router.push({name:'shouquan'})
+
       },
 
     }

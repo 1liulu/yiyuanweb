@@ -52,5 +52,24 @@ export default {
   addPatient() {
     return this.url + "Patient/addPatient?token="+token.token;
   },
-
+  //所有专家列表
+  specialistfinall() {
+    return this.url + "Patient/specialistfinall?token="+token.token;
+  },
+  //专家列表
+  Consultationlist() {
+    return this.url + "Consultation/list?token="+token.token;
+  },
+  //添加订单
+  addorder() {
+    return this.url + "Patient/addorder?token="+token.token;
+  },
+  //添加授权
+  addAuthorization() {
+    return this.url + "authorization/addAuthorization?token="+token.token;
+  },
+  //修改订单编号
+  updateOrder(){
+    return this.url + "Patient/updateOrder?token="+token.token;
+  },
 }

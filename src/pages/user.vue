@@ -94,6 +94,12 @@
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
+    <div style="bottom: 10%;right: 8%;position: fixed;">
+      <mt-palette-button content="+" mainButtonStyle="color:#fff;background-color:#1e90ff;"
+                         @collapse="adduser()">
+        <div class="my-icon-button" ></div>
+      </mt-palette-button>
+    </div>
   </div>
 
 </template>
@@ -230,6 +236,9 @@
 
         })
 
+      },
+      adduser(){
+        this.$router.push({name:'uselist'})
       }
     }
 

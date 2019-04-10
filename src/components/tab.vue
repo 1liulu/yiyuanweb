@@ -56,7 +56,7 @@
             this.img1 = "../../static/user1.png";
           }
           if (this.selected == "message") {
-            this.$router.push('/message')
+            this.$router.push('/consultant')
             this.img5 = "../../static/message2.png";
           } else {
             this.img5 = "../../static/message1.png";
